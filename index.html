@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>wauw</title>
+    <meta name="description" content="a digital audio workstation for your browser that generates all sounds using only the web audio api">
+    <meta name="author" content="mazz.digital">
+    <link rel="canonical" href="https://wauw.mazz.digital/">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="wauw">
+    <meta property="og:title" content="wauw">
+    <meta property="og:description" content="a digital audio workstation for your browser that generates all sounds using only the web audio api">
+    <meta property="og:url" content="https://wauw.mazz.digital/">
+    <meta property="og:image" content="https://wauw.mazz.digital/img/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="wauw">
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="light dark">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="wauw">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main>
+        <header>
+            <section>
+                <strong>wauw</strong>
+                <span>web audio workstation</span>
+            </section>
+            <nav>
+                <section>
+                    <button data-action="play" title="play">
+                        <svg data-icon="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M91.2 36.9c-12.4-6.8-27.4-6.5-39.6 .7S32 57.9 32 72l0 368c0 14.1 7.5 27.2 19.6 34.4s27.2 7.5 39.6 .7l336-184c12.8-7 20.8-20.5 20.8-35.1s-8-28.1-20.8-35.1l-336-184z"/></svg>
+                        <svg data-icon="pause" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80L0 432c0 26.5 21.5 48 48 48l64 0c26.5 0 48-21.5 48-48l0-352c0-26.5-21.5-48-48-48L48 32zm224 0c-26.5 0-48 21.5-48 48l0 352c0 26.5 21.5 48 48 48l64 0c26.5 0 48-21.5 48-48l0-352c0-26.5-21.5-48-48-48l-64 0z"/></svg>
+                    </button>
+                    <button data-action="stop" title="stop">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32z"/></svg>
+                    </button>
+                </section>
+                <fieldset>
+                    <legend style="display:none;">playback mode</legend>
+                    <label>
+                        <input type="radio" name="mode" value="pattern" checked>
+                        pattern
+                    </label>
+                    <label>
+                        <input type="radio" name="mode" value="song">
+                        song
+                    </label>
+                </fieldset>
+                <label data-bpm-control>
+                    <span>bpm</span>
+                    <input type="number" value="120" min="20" max="300" data-tempo>
+                </label>
+            </nav>
+            <aside>
+                <nav>
+                    <button data-action="show-info" title="about wauw">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zM224 160a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm-8 64l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>
+                    </button>
+                    <button data-action="toggle-theme" title="toggle theme">
+                        <svg data-icon="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M178.2-10.1c7.4-3.1 15.8-2.2 22.5 2.2l87.8 58.2 87.8-58.2c6.7-4.4 15.1-5.2 22.5-2.2S411.4-.5 413 7.3l20.9 103.2 103.2 20.9c7.8 1.6 14.4 7 17.4 14.3s2.2 15.8-2.2 22.5l-58.2 87.8 58.2 87.8c4.4 6.7 5.2 15.1 2.2 22.5s-9.6 12.8-17.4 14.3L433.8 401.4 413 504.7c-1.6 7.8-7 14.4-14.3 17.4s-15.8 2.2-22.5-2.2l-87.8-58.2-87.8 58.2c-6.7 4.4-15.1 5.2-22.5 2.2s-12.8-9.6-14.3-17.4L143 401.4 39.7 380.5c-7.8-1.6-14.4-7-17.4-14.3s-2.2-15.8 2.2-22.5L82.7 256 24.5 168.2c-4.4-6.7-5.2-15.1-2.2-22.5s9.6-12.8 17.4-14.3L143 110.6 163.9 7.3c1.6-7.8 7-14.4 14.3-17.4zM207.6 256a80.4 80.4 0 1 1 160.8 0 80.4 80.4 0 1 1 -160.8 0zm208.8 0a128.4 128.4 0 1 0 -256.8 0 128.4 128.4 0 1 0 256.8 0z"/></svg>
+                        <svg data-icon="moon" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512c68.8 0 131.3-27.2 177.3-71.4 7.3-7 9.4-17.9 5.3-27.1s-13.7-14.9-23.8-14.1c-4.9 .4-9.8 .6-14.8 .6-101.6 0-184-82.4-184-184 0-72.1 41.5-134.6 102.1-164.8 9.1-4.5 14.3-14.3 13.1-24.4S322.6 8.5 312.7 6.3C294.4 2.2 275.4 0 256 0z"/></svg>
+                    </button>
+                </nav>
+                <button data-action="export">export</button>
+            </aside>
+        </header>
+
+        <aside>
+            <section>
+                <header>
+                    <h2>patterns</h2>
+                    <nav>
+                        <button data-action="add-pattern" title="add pattern">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg>
+                        </button>
+                        <button data-action="duplicate-pattern" title="duplicate pattern">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-200.6c0-17.4-7.1-34.1-19.7-46.2L370.6 17.8C358.7 6.4 342.8 0 326.3 0L192 0zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-16-64 0 0 16-192 0 0-256 16 0 0-64-16 0z"/></svg>
+                        </button>
+                        <button data-action="delete-pattern" title="delete pattern">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                        </button>
+                    </nav>
+                </header>
+                <ul data-patterns></ul>
+            </section>
+            <section>
+                <header>
+                    <h2>channel rack</h2>
+                    <nav>
+                        <button data-action="add-channel" title="add channel">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg>
+                        </button>
+                        <button data-action="duplicate-channel" title="duplicate channel">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-200.6c0-17.4-7.1-34.1-19.7-46.2L370.6 17.8C358.7 6.4 342.8 0 326.3 0L192 0zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-16-64 0 0 16-192 0 0-256 16 0 0-64-16 0z"/></svg>
+                        </button>
+                        <button data-action="delete-channel" title="delete channel">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                        </button>
+                    </nav>
+                </header>
+                <ul data-channels></ul>
+            </section>
+        </aside>
+
+        <article>
+            <header>
+                <h2>piano roll</h2>
+                <span data-channel-name>-</span>
+            </header>
+            <section>
+                <aside data-piano-keys></aside>
+                <figure data-piano-grid></figure>
+            </section>
+        </article>
+
+        <aside>
+            <header>
+                <h2>mixer</h2>
+            </header>
+            <section data-mixer></section>
+        </aside>
+
+        <footer>
+            <header>
+                <h2>playlist</h2>
+                <select data-playlist-bars>
+                    <option value="8">8 bars</option>
+                    <option value="16">16 bars</option>
+                </select>
+            </header>
+            <section>
+                <header data-timeline></header>
+                <figure data-playlist>
+                    <mark></mark>
+                </figure>
+            </section>
+        </footer>
+    </main>
+
+    <dialog data-instrument-dialog>
+        <header>
+            <h3>select instrument</h3>
+            <button data-action="close-dialog" title="close">×</button>
+        </header>
+        <ul>
+            <li data-preset="kick"><span style="background:#ef4444"></span>kick</li>
+            <li data-preset="snare"><span style="background:#f97316"></span>snare</li>
+            <li data-preset="hihat"><span style="background:#eab308"></span>hihat</li>
+            <li data-preset="openhat"><span style="background:#eab308"></span>open hat</li>
+            <li data-preset="bass"><span style="background:#22c55e"></span>bass</li>
+            <li data-preset="lead"><span style="background:#06b6d4"></span>lead</li>
+            <li data-preset="pad"><span style="background:#a855f7"></span>pad</li>
+        </ul>
+    </dialog>
+
+    <dialog data-info-dialog>
+        <header>
+            <h3>wth is wauw?</h3>
+            <button data-action="close-info" title="close">×</button>
+        </header>
+        <article>
+            <p>wauw is a fully web-native digital audio workstation. all sound is synthesized in real time using the web audio api. create patterns, arrange tracks, and export your work as wav files.<br><br>made with love by <a href="https://mazz.digital" target="_blank">mazz.digital</a></p>
+        </article>
+    </dialog>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
